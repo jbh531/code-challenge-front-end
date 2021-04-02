@@ -1,0 +1,48 @@
+<Page::Header @title="Customers" />
+<Page::Content>
+  <div class="d-flex justify-content-between align-content-center mb-3 form-inline">
+    <h5 class="card-title">
+      {{this.sortedCustomers.length}} Results
+    </h5>
+    <!-- Code for search display and value getting: <div>
+      <h5 class="search-title">    
+        Search By:
+      </h5>
+    </div>
+    <div>
+    <select class="custom-select" {{on "change" this.updateFilterProperty}}>
+        <option value="lastName"selected>Name</option>
+        <option value="company">Company</option>
+        <option value="project">Project</option>
+    </select>
+    </div>
+    <div>
+    <form {{on "change" this.updateSearchValue}}>
+      <div>
+        <Input
+          @type="search"
+          @class="form-control"
+          @id="searchName"
+          @placeholder="Search..."
+          @name="q" />
+      </div>    
+    </form>
+    </div> -->
+    <div>
+      <select class="form-control" {{on "change" this.updateSortProperty}}>
+        <option value="lastName" selected={{eq this.sortProperty "lastName"}}>
+          Sort by name
+        </option>
+        <option value="budget:desc">
+          Sort by budget
+        </option>
+      </select>
+    </div>
+  </div>
+  <!--Helpers to display whether sorted or filtered model for search: {{#if sorting}} --> <!-- {{else}}
+    <CustomersTable @model={{this.filteredCustomers}} />
+    {{/if}} -->
+  <div class="card">
+    <CustomersTable @model={{this.sortedCustomers}} />
+  </div>
+</Page::Content>
